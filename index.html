@@ -1,12 +1,416 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello world</title>
-   
+    <title>HAIRCUT - Đông Tây Barbershop</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #1a1a1a;
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #d4af37;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #d4af37;
+        }
+
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23222" width="1200" height="800"/><path fill="%23333" d="M0 400 L600 200 L1200 400 L600 600 Z"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1.2s ease;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: #d4af37;
+            color: #1a1a1a;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: all 0.3s;
+            animation: fadeInUp 1.4s ease;
+        }
+
+        .btn:hover {
+            background: #f4cf57;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: #d4af37;
+            margin: 1rem auto;
+        }
+
+        .training-section {
+            background: #f8f8f8;
+        }
+
+        .training-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .training-content h3 {
+            color: #d4af37;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .training-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #d4af37;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1a1a1a;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 400px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            margin: 2rem 0;
+            font-size: 1.1rem;
+        }
+
+        .contact-info p {
+            margin: 0.5rem 0;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #d4af37;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <p>h1</p>
+    <header>
+        <nav>
+            <div class="logo">HUY BARBERSHOP</div>
+            <ul class="nav-links">
+                <li><a href="#home">TRANG CHỦ</a></li>
+                <li><a href="#training">ĐÀO TẠO</a></li>
+                <li><a href="#services">DỊCH VỤ</a></li>
+                <li><a href="#about">VỀ CHÚNG TÔI</a></li>
+                <li><a href="#contact">LIÊN HỆ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>HUY BARBERSHOP</h1>
+            <p>Nơi Phong Cách Được Tôn Vinh</p>
+            <a href="#training" class="btn">KHÁM PHÁ NGAY</a>
+        </div>
+    </section>
+
+    <section id="training" class="section training-section">
+        <h2 class="section-title">Dạy Nghề Cắt Tóc Nam</h2>
+        <div class="training-content">
+            <h3>DẠY NGHỀ CẮT TÓC NAM</h3>
+            <p>
+                Dạy nghề cắt tóc nam chuyên nghiệp, bài bản từ cơ bản đến nâng cao, 
+                thực hành thực tế, rèn kỹ năng và thái độ. Tạo điều kiện các bạn có 
+                chỗ làm và thực hành khi hoàn thành.
+            </p>
+            <p>
+                Chương trình đào tạo của chúng tôi được thiết kế để giúp học viên nắm vững 
+                các kỹ thuật cắt tóc hiện đại, kết hợp giữa phong cách truyền thống và xu 
+                hướng quốc tế. Với đội ngũ giảng viên giàu kinh nghiệm và trang thiết bị 
+                hiện đại, chúng tôi cam kết mang đến chất lượng đào tạo hàng đầu.
+            </p>
+            <a href="#contact" class="btn">ĐĂNG KÝ NGAY</a>
+        </div>
+    </section>
+
+    <section id="services" class="section">
+        <h2 class="section-title">Dịch Vụ Của Chúng Tôi</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">✂️</div>
+                <h3>Cắt Tóc Nam</h3>
+                <p>Các kiểu tóc nam hiện đại, từ classic đến trendy, phù hợp với mọi phong cách.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💈</div>
+                <h3>Cạo Râu</h3>
+                <p>Dịch vụ cạo râu chuyên nghiệp với dao cạo truyền thống, mang lại trải nghiệm thư giãn.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🎓</div>
+                <h3>Đào Tạo</h3>
+                <p>Khóa học cắt tóc nam chuyên nghiệp, cam kết việc làm sau khóa học.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💆</div>
+                <h3>Gội Đầu Massage</h3>
+                <p>Dịch vụ gội đầu massage thư giãn, giúp giảm căng thẳng và chăm sóc tóc.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🎨</div>
+                <h3>Nhuộm Tóc</h3>
+                <p>Nhuộm tóc nam với nhiều màu sắc thời thượng, sử dụng sản phẩm cao cấp.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">✨</div>
+                <h3>Tạo Kiểu</h3>
+                <p>Tạo kiểu tóc theo yêu cầu, phù hợp cho mọi sự kiện và phong cách cá nhân.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section">
+        <h2 class="section-title">Về Chúng Tôi</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>
+                    <strong>Đông Tây Barbershop</strong> là sự kết hợp hoàn hảo giữa nghệ thuật 
+                    cắt tóc truyền thống phương Đông và phong cách hiện đại phương Tây. Chúng tôi 
+                    tự hào là nơi mang đến trải nghiệm cắt tóc đẳng cấp và chuyên nghiệp nhất.
+                </p>
+                <p>
+                    Với hơn 10 năm kinh nghiệm trong nghề, đội ngũ barber của chúng tôi không 
+                    chỉ là những người thợ cắt tóc giỏi mà còn là những nghệ sĩ, luôn cập nhật 
+                    những xu hướng mới nhất để phục vụ quý khách hàng.
+                </p>
+                <p>
+                    Chúng tôi cam kết mang đến không chỉ là một mái tóc đẹp mà còn là một trải 
+                    nghiệm thư giãn, thoải mái trong không gian sang trọng và lịch sự.
+                </p>
+            </div>
+            <div class="about-image"></div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <h2 style="color: #d4af37;">LIÊN HỆ VỚI CHÚNG TÔI</h2>
+            <div class="contact-info">
+                <p>📍 Địa chỉ: 123 Đường ABC, Quận XYZ, TP.HCM</p>
+                <p>📞 Điện thoại: 0123 456 789</p>
+                <p>✉️ Email: info@dongtaybarbershop.com</p>
+                <p>🕒 Giờ làm việc: 8:00 - 21:00 (Hàng ngày)</p>
+            </div>
+            <div class="social-links">
+                <a href="#" title="Facebook">📘</a>
+                <a href="#" title="Instagram">📷</a>
+                <a href="#" title="YouTube">📺</a>
+                <a href="#" title="Zalo">💬</a>
+            </div>
+            <p style="margin-top: 2rem; opacity: 0.7;">
+                © 2024 Đông Tây Barbershop. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(26, 26, 26, 0.95)';
+            } else {
+                header.style.background = '#1a1a1a';
+            }
+        });
+    </script>
 </body>
 </html>
